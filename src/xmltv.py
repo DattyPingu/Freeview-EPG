@@ -148,9 +148,10 @@ def build_xmltv(channels: List[Dict], programmes: List[Dict], tz) -> bytes:
         # The Block Of Code Below Adds A Category Tag To The XMLTV File For Each Program - Added By DattyPingu
         category = pr.get("category")
         if category:
-            category_el = etree.SubElement(programme_el, "category")
-            category_el.set("lang", "en")
-            category_el.text = clean_text(category)
+            if category != "":
+                category_el = etree.SubElement(programme_el, "category")
+                category_el.set("lang", "en")
+                category_el.text = clean_text(category)
 
         icon = pr.get("icon")
         if icon:
