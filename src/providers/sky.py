@@ -50,6 +50,10 @@ def fetch_programmes(channel: Dict[str, Any], ctx: Context) -> List[Dict[str, An
             desc = item.get("sy")
             start_raw = item.get("st")
             duration_raw = item.get("d")
+
+            # Added Category Variable To Get The Category For Each Program From Sky's API Then I Added It To The "programmes.append()" Block Further Down In This File - Added By DattyPingu
+            category = item.get("c")
+
             if start_raw is None or duration_raw is None:
                 continue
             try:
@@ -83,6 +87,7 @@ def fetch_programmes(channel: Dict[str, Any], ctx: Context) -> List[Dict[str, An
                     "premiere": premiere,
                     "season": season,
                     "episode": episode,
+                    "category": category,
                 }
             )
     return programmes
